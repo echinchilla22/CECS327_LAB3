@@ -1,9 +1,14 @@
 package LAB3;
 
-class Chunk//TODO: Page is a chunk
+import java.util.*;
+import javax.json.JsonObject;
+import javax.json.JsonArray;
+import javax.json.Json;
+
+class Chunk //Page is a chunk
 {
         Long guid;
-        Long length;//size
+        Long length; //size
 }
 
 class MetaFile
@@ -20,7 +25,7 @@ class MetaFile
           this.name = name;
         }
 
-        public String getLength(){
+        public Long getLength(){
           return length;
         }
 
@@ -35,9 +40,13 @@ class MetaFile
         public void addChunk(Chunk c){
           this.chunks.add(c);
         }
-        public JsonArray createJsonChunks(){
-              for each c in chunks
-                 c.createJson();
+
+        //TODO: return JsonArray
+        public void createJsonChunks(){
+              for(Chunk c : chunks) {
+                  //TODO
+                  //c.createJson();
+              }
         }
 }
 
@@ -45,25 +54,20 @@ class Metadata
 {
       List<MetaFile>  metafiles;
       JsonObject toJsonObject;    // Create a Json Object that contains the file
-      void readFromJsonObject(JsonObject m);  // Read from a Json Object that contains the files
+      //void readFromJsonObject(JsonObject m);  // Read from a Json Object that contains the files
       JsonArray array = Json.createArrayBuilder().build();
 
 
       public void createJson(MetaFile file){
-        this.toJsonObject = Json.createObjectBuilder().build();
+        //this.toJsonObject = Json.createObjectBuilder().build();
 
         for(int i= 0; i < metafiles.size(); i++){
           file = metafiles.get(i);
-          JsonObject j = createJson(file.createJsonChunks());
+          //JsonObject j = createJson(file.createJsonChunks());
 
-
-    //      LAB3.Chunk tempChunk;
-        //  for(int j = 0; j < tempFile.getChunkList().size(); j++){
-        ////    tempChunk = tempFile.getChunkList().get(j);
-
-          }
         }
-        toJsonObject.put("metadata", metafiles);
+
+        //toJsonObject.put("metadata", metafiles);
 
       }
 
