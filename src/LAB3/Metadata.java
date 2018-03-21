@@ -1,6 +1,6 @@
 package LAB3;
 
-class Chunk//Page
+class Chunk//TODO: Page is a chunk
 {
         Long guid;
         Long length;//size
