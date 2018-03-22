@@ -15,23 +15,19 @@ import java.security.*;
         {
             name  : "File1"
             numberOfPages : "3"
-            pageSize : "1024"
             size : "2291"
             page :
             {
-                number : "1"
                 guid   : "22412"
                 size   : "1024"
             }
             page :
             {
-                number : "2"
                 guid   : "46312"
                 size   : "1024"
             }
             page :
             {
-                number : "3"
                 guid   : "93719"
                 size   : "243"
             }
@@ -86,7 +82,7 @@ public class DFS
   /*  public JSonParser readMetaData() throws Exception
     {
         JsonParser jsonParser _ null;
-        long guid = md5("LAB3.Metadata");
+        long guid = md5("json_testing.Metadata");
         LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
         InputStream metadataraw = peer.get(guid);
         // jsonParser = Json.createParser(metadataraw);
@@ -96,22 +92,22 @@ public class DFS
     public void writeMetaData(InputStream stream) throws Exception
     {
         JsonParser jsonParser _ null;
-        long guid = md5("LAB3.Metadata");
+        long guid = md5("json_testing.Metadata");
         LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
         peer.put(guid, stream);
     }
    */
     public void mv(String oldName, String newName) throws Exception
     {
-        // TODO:  Change the name in LAB3.Metadata
-        // Write LAB3.Metadata
+        // TODO:  Change the name in json_testing.Metadata
+        // Write json_testing.Metadata
     }
 
     
     public String ls() throws Exception
     {
         String listOfFiles = "";
-       // TODO: returns all the files in the LAB3.Metadata
+       // TODO: returns all the files in the json_testing.Metadata
        // JsonParser jp = readMetaData();
         return listOfFiles;
     }
@@ -119,20 +115,20 @@ public class DFS
     
     public void touch(String fileName) throws Exception
     {
-         // TODO: Create the file fileName by adding a new entry to the LAB3.Metadata
-        // Write LAB3.Metadata
+         // TODO: Create the file fileName by adding a new entry to the json_testing.Metadata
+        // Write json_testing.Metadata
 
         
         
     }
     public void delete(String fileName) throws Exception
     {
-        // TODO: remove all the pages in the entry fileName in the LAB3.Metadata and then the entry
-        // for each page in LAB3.Metadata.filename
+        // TODO: remove all the pages in the entry fileName in the json_testing.Metadata and then the entry
+        // for each page in json_testing.Metadata.filename
         //     peer = chord.locateSuccessor(page.guid);
         //     peer.delete(page.guid)
-        // delete LAB3.Metadata.filename
-        // Write LAB3.Metadata
+        // delete json_testing.Metadata.filename
+        // Write json_testing.Metadata
 
         
     }
@@ -157,10 +153,10 @@ public class DFS
     public void append(String filename, Byte[] data) throws Exception
     {
         // TODO: append data to fileName. If it is needed, add a new page.
-        // Let guid be the last page in LAB3.Metadata.filename
+        // Let guid be the last page in json_testing.Metadata.filename
         //LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
         //peer.put(guid, data);
-        // Write LAB3.Metadata
+        // Write json_testing.Metadata
 
         
     }
