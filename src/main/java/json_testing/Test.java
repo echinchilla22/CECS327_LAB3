@@ -10,6 +10,7 @@ public class Test {
         metadata.addChunkToFile("testFile", 15L, 2L);
         metadata.addChunkToFile("testFile2", 20L, 3L);
         metadata.addChunkToFile("testFile2", 25L, 4L);
+        metadata.addChunkToFile("testFile2", 25L, 4L);
 
 
 
