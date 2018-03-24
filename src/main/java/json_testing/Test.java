@@ -12,7 +12,7 @@ public class Test {
         metadata.addChunkToFile("testFile2", 25L, 4L);
         metadata.addChunkToFile("testFile2", 25L, 4L);
 
-
+        //TODO: test the json here
 
 
         System.out.println(metadata.getListOfNames());
