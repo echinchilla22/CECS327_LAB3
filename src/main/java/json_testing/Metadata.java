@@ -1,148 +1,301 @@
 package json_testing;
 
+import jdk.nashorn.internal.parser.JSONParser;
+
 import java.util.*;
-//import javax.json.JsonObject;
-//import javax.json.JsonArray;
-//import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonArray;
+import javax.json.Json;
 
-class Chunk //Page is a chunk
+/**
+ * This class represents a page in a file
+ */
+class Page
 {
-        Long guid;
-        Long length; //size
+    /**
+     * id of a page
+     */
+    Long guid;
 
-    public Chunk(Long length, Long guid){
-        this.length = length;
+    /**
+     * length of a page
+     */
+    Long length;
+
+    /**
+     * Constructor
+     * @param length of a page
+     * @param guid id of a page
+     */
+    public Page(Long guid, Long length){
         this.guid = guid;
+        this.length = length;
     }
 
+    /**
+     * retrieves the id of a page
+     * @return page id
+     */
     public Long getGuid(){
         return guid;
     }
+
+    /**
+     * sets a page id
+     * @param guid id to be set
+     */
+    public void setGuid(Long guid) {
+        this.guid = guid;
+    }
+
+    /**
+     * retrieves the length of page
+     * @return length
+     */
+    public Long getLength() {
+        return length;
+    }
+
+    /**
+     * sets the page length
+     */
+    public void setLength() {
+        this.length = length;
+    }
 }
 
+/**
+ * This class represents a file in the Metadata
+ */
 class MetaFile
 {
-        String name;
-        Long  length;
-        List<Chunk> chunks;
+    /**
+     * name of the file
+     */
+    String name;
 
-        public MetaFile (String name, Long length){
-            this.name = name;
-            this.length = length;
-            chunks = new ArrayList<Chunk>();
-        }
+    /**
+     * length of the file
+     */
+    Long  length;
 
-        public String getName(){
-          return name;
-        }
+    /**
+     * list of pages in a file
+     */
+    List<Page> pages;
 
-        public void setName(String name){
-          this.name = name;
-        }
+    /**
+     * Constructor
+     * @param name of the file
+     * @param length of the file
+     */
+    public MetaFile (String name, Long length){
+        this.name = name;
+        this.length = length;
+        pages = new ArrayList<Page>();
+    }
 
-        public Long getLength(){
-          return length;
-        }
+    /**
+     * retrieves the name of a file
+     * @return the name of the file
+     */
+    public String getName(){
+      return name;
+    }
 
-        public void setLength(Long length){
-          this.length = length;
-        }
+    /**
+     * sets the mname of a file
+     * @param name of file
+     */
+    public void setName(String name){
+      this.name = name;
+    }
 
-        public List<Chunk> getChunkList(){
-          return chunks;
-        }
+    /**
+     * retrieves the length
+     * @return length of file
+     */
+    public Long getLength(){
+      return length;
+    }
 
-        public void addChunk(Chunk c){
-          this.chunks.add(c);
-        }
+    /**
+     * sets the length of the file
+     * @param length of file to be set
+     */
+    public void setLength(Long length){
+      this.length = length;
+    }
+
+    /**
+     * returns list of pages
+     * @return list of pages
+     */
+    public List<Page> getListOfPages(){
+      return pages;
+    }
+
+    /**
+     * adds a page to a file
+     * @param p page to be added
+     */
+    public void addPage(Page p){
+      this.pages.add(p);
+    }
+
+    /**
+     * retrieves a page specified
+     * @param page to be retrieved
+     * @return page id
+     */
+    public Long getPage(int page){
+        return pages.get(page).getGuid();
+    }
+
+    /**
+     * retrieves the last page of the
+     * @return
+     */
+    public Long getLastPage(){
+        return pages.get(pages.size() - 1).getGuid();
+    }
+    /**
+     * Returns the amount of pages in a file
+     * @return size of the page list
+     */
+    public int getNumOfPages(){
+        return pages.size();
+    }
 
 
-        public Long getPage(int page){
-            return chunks.get(page).getGuid();
-        }
-
-        public int getNumOfPages(){
-            return chunks.size();
-        }
-
-
-
-        //TODO: return JsonArray
-        public void createJsonChunks(){
-              for(Chunk c : chunks) {
-                  //TODO
-                  //c.createJson();
-              }
-        }
+//
+//        //TODO: return JsonArray
+//        public void createJsonChunks(){
+//              for(Page p : chunks) {
+//                  //TODO
+//                  //c.createJson();
+//              }
+//        }
 }
 
+/**
+ * This class represents the Metadata
+ */
 class Metadata
 {
-      List<MetaFile>  metafiles;
-      //JsonObject toJsonObject;    // Create a Json Object that contains the file
-      //void readFromJsonObject(JsonObject m);  // Read from a Json Object that contains the files
-      //JsonArray array = Json.createArrayBuilder().build();
+    /**
+     * list of files
+     */
+    List<MetaFile> metafiles;
+    JsonObject toJsonObject;    // Create a Json Object that contains the file
+    //void readFromJsonObject(JsonObject m);  // Read from a Json Object that contains the files
+    //JsonArray array = Json.createArrayBuilder().build();
 
+    /**
+     * Constructor
+     */
+    public Metadata(){
+        metafiles = new ArrayList<MetaFile>();
+    }
 
-      public void createJson(MetaFile file){
-        //this.toJsonObject = Json.createObjectBuilder().build();
+    /**
+     * Constructor which parses the json
+     * @param parser
+     */
+    public Metadata(JSONParser parser){
+        //read from the json
+        //metafiles.add()
+    }
 
-        for(int i= 0; i < metafiles.size(); i++){
-          file = metafiles.get(i);
-          //JsonObject j = createJson(file.createJsonChunks());
+//      public JsonObject createJson(MetaFile file){
+//        //this.toJsonObject = Json.createObjectBuilder().build();
+//
+//        for(int i= 0; i < metafiles.size(); i++){
+//            file = metafiles.get(i);
+//            //JsonObject j = createJson(file.createJsonChunks());
+//
+//        }
+//
+//        //toJsonObject.put("metadata", metafiles);
+//
+//        return new JsonObject();
+//      }
 
-        }
-
-        //toJsonObject.put("metadata", metafiles);
-
-      }
-
-      public Metadata(){
-          metafiles = new ArrayList<MetaFile>();
-
-      }
-
-
-      public void addFile(String name, Long length){
+    /**
+     * adds a file to the metadata
+     * @param name of the file to be added
+     * @param length of the file being added
+     */
+    public void addFile(String name, Long length){
         MetaFile metafile = new MetaFile(name, length);
         this.metafiles.add(metafile);
+    }
 
-      }
-
-      public String getListOfNames(){
-          String names = "";
-          for(MetaFile f : metafiles)
+    /**
+     * Returns the list of names of all the files in 1 string
+     * @return string of files
+     */
+    public String getListOfNames(){
+        String names = "";
+        for(MetaFile f : metafiles)
             names += f.getName() + "\t" + f.getLength() + "\t" + f.getNumOfPages() +"\n";
 
-          return names;
+        return names;
+    }
+
+    /**
+     * gets a page of a file
+     * @param fileName name of file the page belongs to
+     * @param page to be retrieved
+     * @return page
+     */
+    public Long getPage(String fileName, int page){
+        for(MetaFile f : metafiles){
+            if(f.getName().equals(fileName)){
+                return f.getPage(page);
+            }
+        }
+        return 0L; //TODO: handle this by throwing an exception
+    }
+
+    /**
+     * Retreives the first page of the file specified
+     * @param fileName name of file to search by
+     * @return id of the page
+     */
+      public Long getHead(String fileName){
+          return getPage(fileName, 0);
       }
 
-      public Long getChunk(String fileName, int page){
+    /**
+     * returns the last page in the file specified
+     * @param fileName name of file to search bt
+     * @return id of page
+     */
+      public Long getTail(String fileName) {
           for(MetaFile f : metafiles){
               if(f.getName().equals(fileName)){
-                  return f.getPage(page);
+                  return f.getLastPage();
               }
           }
-          return 0L;//TODO: exception
+          return 0L; //TODO: handle this by throwing an exception
       }
 
-      public Long getHead(String fileName){
-          return getChunk(fileName, 0);
-      }
-
-      //TODO: getTail
-
-      //TODO: mv rename metafile
-
-      //append
-      public void addChunkToFile(String fileName, Long length, Long guid){
-
+    /**
+     * add page to a file
+     * @param fileName name of file to add to
+     * @param length of page to be added
+     * @param guid id of page to be added
+     */
+      public void addPageToFile(String fileName, Long length, Long guid){
           for(MetaFile f : metafiles){
           if(f.getName().equals(fileName)){
-              Chunk c = new Chunk(length, guid);
-              f.addChunk(c);
+              Page p = new Page(length, guid);
+              f.addPage(p);
               f.setLength(f.getLength() + length);
           }
         }
       }
+
+
 }

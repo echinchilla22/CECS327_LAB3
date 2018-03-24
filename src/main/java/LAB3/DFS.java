@@ -86,11 +86,14 @@ public class DFS
         LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
         InputStream metadataraw = peer.get(guid);
         // jsonParser = Json.createParser(metadataraw);
-        return jsonParser;
+
+        return new Metadata(jsonParser);
     }
     
-    public void writeMetaData(InputStream stream) throws Exception
+    public void writeMetaData(Metadata metadata) throws Exception
     {
+        //TODO: JsonObject j = metadata.createJson() returns Json and
+        //TODO: store in InputStream or file
         JsonParser jsonParser _ null;
         long guid = md5("json_testing.Metadata");
         LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
@@ -108,7 +111,8 @@ public class DFS
     {
         String listOfFiles = "";
        // TODO: returns all the files in the json_testing.Metadata
-       // JsonParser jp = readMetaData();
+       // Metadata jp = readMetaData();
+        //jp.getListOfNames();
         return listOfFiles;
     }
 
