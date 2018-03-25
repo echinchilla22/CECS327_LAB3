@@ -1,5 +1,10 @@
 package LAB3;
 
+import org.json.JSONObject;
+
+import javax.json.JsonObject;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.nio.file.*;
 import java.math.BigInteger;
 import java.security.*;
@@ -89,17 +94,19 @@ public class DFS
 
         return new Metadata(jsonParser);
     }
-    
+    */
     public void writeMetaData(Metadata metadata) throws Exception
     {
         //TODO: JsonObject j = metadata.createJson() returns Json and
         //TODO: store in InputStream or file
-        JsonParser jsonParser _ null;
+        //JsonParser jsonParser _ null;
+        JSONObject j = metadata.createJson();
         long guid = md5("json_testing.Metadata");
         LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
+        InputStream stream = new ByteArrayInputStream(j);
         peer.put(guid, stream);
     }
-   */
+
     public void mv(String oldName, String newName) throws Exception
     {
         // TODO:  Change the name in json_testing.Metadata

@@ -1,11 +1,12 @@
-package json_testing;
+package LAB3;
 
 import jdk.nashorn.internal.parser.JSONParser;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import java.util.*;
 import javax.json.JsonObject;
-import javax.json.JsonArray;
-import javax.json.Json;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents a page in a file
@@ -168,14 +169,19 @@ class MetaFile
     }
 
 
-//
-//        //TODO: return JsonArray
-//        public void createJsonPages(){
-//              for(Page p : chunks) {
-//                  //TODO
-//                  //c.createJson();
-//              }
-//        }
+
+    //TODO: return JsonArray
+    public JSONArray createJsonPages() throws Exception{
+        JSONArray listOfPages = new JSONArray();
+        JSONObject page = new JSONObject();
+          for(Page p : pages) {
+              //TODO
+              page.put("guid", p.guid);
+              page.put("length", p.length);
+              listOfPages.put(page);
+          }
+          return listOfPages;
+    }
 }
 
 /**
@@ -207,19 +213,32 @@ class Metadata
         //metafiles.add()
     }
 
-//      public JsonObject createJson(MetaFile file){
-//        //this.toJsonObject = Json.createObjectBuilder().build();
-//
-//        for(int i= 0; i < metafiles.size(); i++){
-//            file = metafiles.get(i);
-//            //JsonObject j = createJson(file.createJsonPages());
-//
-//        }
-//
-//        //toJsonObject.put("metadata", metafiles);
-//
-//        return new JsonObject();
-//      }
+    public JSONObject createJson()throws Exception{
+        JSONObject object = new JSONObject();
+        //the entire metadata
+        JSONObject metadata = new JSONObject();
+        //array that contains all the metafiles
+        JSONArray metafilesArray = new JSONArray();
+        //array that contains all the pages of a metafile
+        JSONArray pages;
+        for(MetaFile file : metafiles){
+            JSONObject metafile = new JSONObject();
+            //declare the properties of the metafile
+            metafile.put("name", file.name);
+            metafile.put("numberOfPages", file.pages);
+            metafile.put("length", file.length);
+            //get the pages of the file
+            pages = file.createJsonPages();
+            //add the pages array to the metafile jsonobject
+            metafile.put("pages", pages);
+            //add the metafile to json array of files
+            metafilesArray.put(metafile);
+
+        }
+        metadata.put("file", metafiles);
+        object.put("metadata", metadata);
+        return object;
+    }
 
     /**
      * adds a file to the metadata
