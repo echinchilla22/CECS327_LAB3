@@ -1,10 +1,11 @@
 package LAB3;
 
+import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONObject;
 
 import javax.json.JsonObject;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import javax.json.stream.JsonParser;
+import java.io.*;
 import java.nio.file.*;
 import java.math.BigInteger;
 import java.security.*;
@@ -99,12 +100,27 @@ public class DFS
     {
         //TODO: JsonObject j = metadata.createJson() returns Json and
         //TODO: store in InputStream or file
-        //JsonParser jsonParser _ null;
-        JSONObject j = metadata.createJson();
+        JSONObject j = metadata.createJson();//get the json object from the metadata
+        writeJsonToFile(j);//write to a text file
         long guid = md5("json_testing.Metadata");
         LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
-        InputStream stream = new ByteArrayInputStream(j);
+        //store into an inputstream
+        File file = new File("json.txt");
+        InputStream  stream = new FileInputStream(file);
+
         peer.put(guid, stream);
+    }
+
+    /**
+     * write the json object to the text file
+     * @param j the json object that convert from metadata
+     * @throws Exception
+     */
+    private void writeJsonToFile(JSONObject j) throws Exception{
+        try (FileWriter file = new FileWriter("json.txt")) {
+            file.write(j.toString());
+            System.out.println("Successfully Copied JSON Object to File...");
+        }
     }
 
     public void mv(String oldName, String newName) throws Exception
@@ -140,8 +156,6 @@ public class DFS
         //     peer.delete(page.guid)
         // delete json_testing.Metadata.filename
         // Write json_testing.Metadata
-
-        
     }
     
     public Byte[] read(String fileName, int pageNumber) throws Exception
