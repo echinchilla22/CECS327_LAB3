@@ -1,8 +1,18 @@
 package LAB3;
 
+import com.oracle.javafx.jmx.json.JSONReader;
+import jdk.nashorn.internal.parser.JSONParser;
+
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonReader;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.
 import java.nio.file.*;
 import java.math.BigInteger;
 import java.security.*;
+import javax.json.JsonObject;
+
 // import a json package
 
 
@@ -61,9 +71,13 @@ public class DFS
         }
         return 0;
     }
-    
-    
-    
+
+
+    /**
+     * dfs class
+     * @param port
+     * @throws Exception
+     */
     public DFS(int port) throws Exception
     {
         
@@ -78,32 +92,71 @@ public class DFS
         chord.joinRing(Ip, port);
         chord.Print();
     }
-    
-  /*  public JSonParser readMetaData() throws Exception
-    {
-        JsonParser jsonParser _ null;
-        long guid = md5("json_testing.Metadata");
-        LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
-        InputStream metadataraw = peer.get(guid);
-        // jsonParser = Json.createParser(metadataraw);
 
-        return new Metadata(jsonParser);
-    }
-    
-    public void writeMetaData(Metadata metadata) throws Exception
+      //TODO: Eunice return metadata?
+    public void readMetaData() throws Exception
     {
-        //TODO: JsonObject j = metadata.createJson() returns Json and
-        //TODO: store in InputStream or file
-        JsonParser jsonParser _ null;
-        long guid = md5("json_testing.Metadata");
+        //JSONParser jsonParser = new JSONParser();
+        Metadata file = new Metadata();
+        //JsonObject json = new JsonObjectBuilder().build(); use it to convert
+        //JSONObject jsonObject = null;
+        long guid = md5("jsonTesting.json");
         LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
-        peer.put(guid, stream);
-    }
-   */
+
+        //InputStream metadataraw = peer.get(guid);
+
+
+
+
+        //return new jsonParser;
+
+          // make metadata file
+          // json reader
+          // make json object
+
+          //long guid = md5("jsonTesting.json");
+          //LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
+          //try/catch check that the file you are reading from exists
+              // use jsonreader
+              //whatever you got from the jsonreader store it in metadata/jsonParser to return it
+        }
+
+
+//    public void writeMetaData(Metadata metadata) throws Exception
+//    {
+//        //TODO: JsonObject j = metadata.createJson() returns Json and
+//        //TODO: store in InputStream or file
+          // Metadata file = metadata;
+          // create json object
+//        JSONParser jsonParser = null;
+//        long guid = md5("jsonTesting.json");
+//        LAB3.ChordMessageInterface peer = chord.locateSuccessor(guid);
+//        InputStream stream; (use json object to convert into something"
+//        peer.put(guid, stream);
+//    }
+
+    //TODO: Eunice
     public void mv(String oldName, String newName) throws Exception
     {
         // TODO:  Change the name in json_testing.Metadata
-        // Write json_testing.Metadata
+        // Write json_testing.Metadata //should happen in write
+
+        //check that the file with specified name exists and update it
+//        Metadata metatdata = readMetaData();
+//        for(MetaFile file : metadata.getListOfNames()){
+//            if(file.getName().equals(oldName)){
+//                file.setName(newName);
+//            }
+//        }
+//
+//        //write it back to the file
+//        try{
+//            writeMetaData(metadata);
+//        }catch(FileNotFoundException fnfe){
+//
+//            System.out.println("File not found! Write was unsuccessful");
+//        }
+
     }
 
     
@@ -136,11 +189,16 @@ public class DFS
 
         
     }
-    
+
+    //TODO: Eunice
     public Byte[] read(String fileName, int pageNumber) throws Exception
     {
         // TODO: read pageNumber from fileName
-        return null;
+        // Does this mean read from the page specified?
+        //Metadata metadata = readMetaData();
+        //Long pageNum = metadata.getPage(fileName, pageNumber); // get actual page object?
+
+        return null; // return data with chord?
     }
     
     
