@@ -86,7 +86,13 @@ public class DFS
         chord = new Chord(port, guid);
         Files.createDirectories(Paths.get(guid+"/repository"));
     }
-    
+
+    /**
+     * testing the app
+     * @param Ip
+     * @param port
+     * @throws Exception
+     */
     public  void join(String Ip, int port) throws Exception
     {
         chord.joinRing(Ip, port);
