@@ -13,11 +13,6 @@ public class Client
 
     }
 
-    /**
-     * more java docs
-     * @param args
-     * @throws Exception
-     */
     static public void main(String args[]) throws Exception
     {
         if (args.length < 1 ) {
